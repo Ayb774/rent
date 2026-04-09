@@ -58,4 +58,22 @@ public class CarServiceTest {
         
         assertEquals(3, carService.getCars().size());
     }
+
+    @Test
+    public void testDeleteCar() {
+        Car car = new Car("ABC123", "Toyota", 15000.0);
+        carService.addCar(car);
+
+        boolean deleted = carService.deleteCar("ABC123");
+
+        assertTrue(deleted);
+        assertEquals(0, carService.getCars().size());
+    }
+
+    @Test
+    public void testDeleteCarNotFound() {
+        boolean deleted = carService.deleteCar("NOTFOUND");
+
+        assertFalse(deleted);
+    }
 }
